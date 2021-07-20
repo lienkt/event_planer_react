@@ -1,5 +1,5 @@
 import './App.css';
-import Homepage from "./Homepage"
+import Homepage from "./Pages/Home"
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // import { Router } from "workbox-routing";
 // import Switch from "react-bootstrap/esm/Switch";
