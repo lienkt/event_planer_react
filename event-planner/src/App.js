@@ -1,11 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
+import Homepage from "./Homepage"
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+// import { Router } from "workbox-routing";
+// import Switch from "react-bootstrap/esm/Switch";
+
 
 function App() {
   return (
-    <div className="App" class="p-6 items-center justify-center">
-        <h1 class="text-blue-400 font-extrabold">Hello Adnan Ali Khan from the Whole world!</h1>
-        <p class="tracking-widest">This is my first React App.</p>
+    <div>
+        <Router>
+          <Switch>
+          <Route path='/' exact={true} component={Homepage}/>
+          </Switch>
+        </Router>
     </div>
   );
 }
