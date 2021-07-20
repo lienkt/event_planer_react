@@ -7,7 +7,7 @@ function App() {
   return (
     <BrowserRouter forceRefresh={true}>
     <div>
-      showAdmin && <Link className='link' to="/users">Users</Link>
+      <Link className='link' to="/users">Users</Link>
     </div>
 
     <Switch>
