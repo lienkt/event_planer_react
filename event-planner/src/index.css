@@ -9,6 +9,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #0e2a47;
 }
 
 code {
@@ -25,6 +26,19 @@ a, a:hover, a:focus, a:active {
   color: #03a9f4;
   text-decoration: none;
 }
+
+div, span {
+  color: rgb(107, 114, 128);
+  font-size: 22px;
+}
+
+button span {
+  color: white;
+}
+.bg-blue-1 {
+  color: #344e86;
+}
+
 .banner {
   justify-content: center;
   display: flex;

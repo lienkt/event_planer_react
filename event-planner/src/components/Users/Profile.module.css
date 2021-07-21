@@ -1,0 +1,44 @@
+.profilePage {
+    padding: 20px;
+}
+
+.header {
+    border-radius: 5px;
+    padding: 20px;
+    background-color: white;
+}
+
+.headerTop {
+    padding: 20px;
+    border-bottom: 2px solid #8c8c8c;
+}
+
+.fullname {
+    font-weight: 700;
+    color: rgb(31, 41, 55);
+    font-size: 28px;
+}
+
+.username, .age, .rating {
+    margin-left: 10px;
+}
+
+.options {
+    margin-top: 30px;
+}
+
+.skillLabel, .historyLabel {
+    margin-right: 20px;
+}
+
+.content {
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.contentItem {
+    padding: 20px;
+    width: 100%;
+    border-bottom: 0.5px solid #0e2a4759;
+}
