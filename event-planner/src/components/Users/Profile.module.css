@@ -2,6 +2,11 @@
     padding: 20px;
 }
 
+.profilePageInside{
+    width: 100%;
+    margin: 40px;
+}
+
 .header {
     border-radius: 5px;
     padding: 20px;
@@ -11,6 +16,11 @@
 .headerTop {
     padding: 20px;
     border-bottom: 2px solid #8c8c8c;
+}
+
+.leftPart {
+    width: 200px;
+    height: 200px;
 }
 
 .fullname {

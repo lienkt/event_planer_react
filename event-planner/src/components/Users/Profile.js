@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react'
 import { getUsers } from '../../services/Users'
 import styles from './Profile.module.css'
+import Rating from '@material-ui/lab/Rating';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 const Profile = () => {
     const [user, setUser] = useState([])
-    const [skills, setSkills] = useState([])
-    const [showSkills, setShowSkills] = useState([])
-    const [historys, setHistorys] = useState([])
-    const [showHis, setShowHis] = useState([])
-    const [hosteds, setHosteds] = useState([])
-    const [showHosted, setShowHosted] = useState([])
+    // const [skills, setSkills] = useState([])
+    // const [showSkills, setShowSkills] = useState([])
+    // const [historys, setHistorys] = useState([])
+    // const [showHis, setShowHis] = useState([])
+    // const [hosteds, setHosteds] = useState([])
+    // const [showHosted, setShowHosted] = useState([])
 
     useEffect(() => {
         (async () => {
@@ -20,9 +22,9 @@ const Profile = () => {
 	
     return (
         <div className={[styles.profilePage, "flex justify-center"].join(" ")}>
-            <div>
-                <div className={[styles.header, "flex-none sm:flex"].join(" ")}>
-                    <div className={styles.leftPart} class="flex justify-center items-center relative h-32 w-32 sm:mb-0 mb-3">
+            <div className={styles.profilePageInside}>
+                <div className={[styles.header, "flex justify-start"].join(" ")}>
+                    <div className={[styles.leftPart, "flex justify-center items-center relative h-32 w-50 sm:mb-0 mb-3"].join(" ")}>
                         <div className={styles.avata}>
                             <img src="/user.png" className={styles.avata} alt="bg" />
                         </div>
@@ -40,9 +42,17 @@ const Profile = () => {
                         </div>
                         <div className={styles.ratingRow} class="flex">
                             <div className={styles.ratingLabel}>Rating:</div>
-                            <div className={styles.rating}>4.5</div>
+                            <div className={styles.rating}>
+                                <Rating
+                                    name="total-rating"
+                                    value={3}
+                                    precision={0.5}
+                                    readOnly={true}
+                                    emptyIcon={<StarBorderIcon fontSize="inherit" />}
+                                    />
+                            </div>
                         </div>
-                        <div className={[styles.options, "flex justify-between"].join(" ")}>
+                        <div className={[styles.options, "flex justify-start"].join(" ")}>
                             <div className={styles.skillLabel}>
                                 <button class="bg-red-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded">
                                     <span>Skills</span>
@@ -65,15 +75,27 @@ const Profile = () => {
                     <div className={[styles.contentItem, "flex justify-between"].join(" ")}>
                         <div className={styles.skillName}>DJ </div>
                         <div class="flex justify-end">
-                            <div className={styles.ratingLable}>Rating:</div>
-                            <div className={styles.ratingValue}>4.5</div>
+                            <div className={styles.ratingValue}>
+                                <Rating
+                                    name="rating-skill-1"
+                                    value={4}
+                                    precision={0.5}
+                                    emptyIcon={<StarBorderIcon fontSize="inherit" />}
+                                    />
+                            </div>
                         </div>
                     </div>
                     <div className={[styles.contentItem, "flex justify-between"].join(" ")}>
                         <div className={styles.skillName}>DJ </div>
                         <div class="flex justify-end">
-                            <div className={styles.ratingLable}>Rating:</div>
-                            <div className={styles.ratingValue}>4.5</div>
+                            <div className={styles.ratingValue}>
+                                <Rating
+                                    name="rating-skill-2"
+                                    value={2}
+                                    precision={0.5}
+                                    emptyIcon={<StarBorderIcon fontSize="inherit" />}
+                                    />
+                            </div>
                         </div>
                     </div>
                 </div>

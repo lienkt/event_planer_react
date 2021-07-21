@@ -27,7 +27,7 @@ a, a:hover, a:focus, a:active {
   text-decoration: none;
 }
 
-div, span {
+div {
   color: rgb(107, 114, 128);
   font-size: 22px;
 }
@@ -39,22 +39,6 @@ button span {
   color: #344e86;
 }
 
-.banner {
-  justify-content: center;
-  display: flex;
-  font-size: 45px;
-  color: #ff5722;
-  font-family: cursive;
-  font-weight: 700;
-  margin: 20px;
+.MuiRating-root {
+  color: #ffb400;
 }
-.menu-list-movie {
-  display: flex;
-  justify-content: center;
-}
-
-.list-movie {
-  display: flex;
-  margin: 0 20px 0 20px;
-}
-
