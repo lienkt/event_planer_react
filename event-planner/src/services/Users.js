@@ -128,3 +128,15 @@ export const deleteUser = async (userId) => {
 		}
 	})
 }
+
+export const getHistory = async () => {
+	let response = await fetch(`${process.env.REACT_APP_API_URL}/users`)
+    let users = await response.json()
+    return users
+}
+
+export const getHosted = async () => {
+	let response = await fetch(`${process.env.REACT_APP_API_URL}/users`)
+    let users = await response.json()
+    return users
+}

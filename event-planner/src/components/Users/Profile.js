@@ -1,25 +1,50 @@
 import { useEffect, useState } from 'react'
-import { getUsers } from '../../services/Users'
+import { getUsers, getHistory, getHosted } from '../../services/Users'
 import styles from './Profile.module.css'
 import Rating from '@material-ui/lab/Rating';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 const Profile = () => {
     const [user, setUser] = useState([])
-    // const [skills, setSkills] = useState([])
-    // const [showSkills, setShowSkills] = useState([])
-    // const [historys, setHistorys] = useState([])
-    // const [showHis, setShowHis] = useState([])
-    // const [hosteds, setHosteds] = useState([])
-    // const [showHosted, setShowHosted] = useState([])
+    const [showSkills, setShowSkills] = useState(true)
+    const [historys, setHistorys] = useState([])
+    const [showHis, setShowHis] = useState(true)
+    const [hosteds, setHosteds] = useState([])
+    const [showHosted, setShowHosted] = useState(true)
 
     useEffect(() => {
         (async () => {
             let fetchedUsers = await getUsers()
             setUser(fetchedUsers)
+            setShowSkills(true)
         })()
     }, [])
 	
+    const onClickSkillsHandler = (userId) => {
+        setShowSkills(true)
+        setShowHis(false)
+        setShowHosted(false)
+    }
+    
+    const onClickHisHandler = (userId) => {
+        (async () => {
+            let fetchedHis = await getHistory()
+            setHistorys(fetchedHis)
+            setShowHis(true)
+            setShowSkills(true)
+            setShowHosted(false)
+        })()
+    }
+
+    const onClickHostedHandler = (userId) => {
+        (async () => {
+            let fetchedHosted = await getHosted()
+            setHosteds(fetchedHosted)
+            setShowHosted(true)
+            setShowSkills(false)
+            setShowHis(false)
+        })()
+    }
     return (
         <div className={[styles.profilePage, "flex justify-center"].join(" ")}>
             <div className={styles.profilePageInside}>
@@ -54,24 +79,30 @@ const Profile = () => {
                         </div>
                         <div className={[styles.options, "flex justify-start"].join(" ")}>
                             <div className={styles.skillLabel}>
-                                <button class="bg-red-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded">
+                                <button
+                                    onClick={onClickSkillsHandler}
+                                    class="bg-red-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded">
                                     <span>Skills</span>
                                 </button>
                             </div>
                             <div className={styles.historyLabel}>
-                                <button class="bg-blue-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded">
+                                <button 
+                                    onClick={onClickHisHandler}
+                                    class="bg-blue-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded">
                                     <span>History</span>
                                     </button>
                                 </div>
                             <div className={styles.hostedLabel}>
-                                <button class="bg-blue-300 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded">
+                                <button 
+                                    onClick={onClickHostedHandler}
+                                    class="bg-blue-300 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded">
                                     <span>Hosted</span>
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className={[styles.content, ""].join(" ")}>
+                {showSkills && <div className={[styles.content, ""].join(" ")}>
                     <div className={[styles.contentItem, "flex justify-between"].join(" ")}>
                         <div className={styles.skillName}>DJ </div>
                         <div class="flex justify-end">
@@ -99,7 +130,8 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
-                <div className={[styles.content, ""].join(" ")}>
+                }
+                {showHis && <div className={[styles.content, ""].join(" ")}>
                     <div className={[styles.contentItem, "flex justify-between"].join(" ")}>
                         <div className={styles.eventName}>Wedding in Paris </div>
                         <div class="flex justify-end">
@@ -117,7 +149,8 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
-                <div className={[styles.content, ""].join(" ")}>
+                }
+                {showHosted && <div className={[styles.content, ""].join(" ")}>
                     <div className={[styles.contentItem, "flex justify-between"].join(" ")}>
                         <div className={styles.eventName}>Wedding in Paris </div>
                         <div class="flex justify-end">
@@ -135,7 +168,7 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
-            
+                }
             </div>
         </div>
     )
