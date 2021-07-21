@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import '../../App';
 import { Button} from 'reactstrap';
-import { getMovieById } from '../../Services/eventDetails'
+import { getMovieById } from '../../services/eventDetails'
 import { Link } from 'react-router-dom'
 
 const EventsDetails = () => {

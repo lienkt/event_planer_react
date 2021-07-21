@@ -1,6 +1,6 @@
-import Details from '../Components/Events/EventsDetails' // need to change the path after
+import Details from '../components/Events/EventsDetails' // need to change the path after
 
-const details = ({currentMovie, setCurrentMovie}) => {
+const Event = ({currentMovie, setCurrentMovie}) => {
     return <section>
             <div className="list-movie">
                 <Details currentMovie={currentMovie} setCurrentMovie={setCurrentMovie}/>
@@ -8,4 +8,4 @@ const details = ({currentMovie, setCurrentMovie}) => {
     </section>
 }
 
-export default details
+export default Event

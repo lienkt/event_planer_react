@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import '../../App';
 import { Button} from 'reactstrap';
-import { getMovies } from '../../Services/Events'
+import { getMovies } from '../../services/Events'
 import { useHistory } from 'react-router-dom'
 
 const ListOfEvents = () => {

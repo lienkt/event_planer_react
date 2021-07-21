@@ -1,4 +1,4 @@
-import Events from '../Components/Events/ListOfEvents'
+import Events from '../components/Events/ListOfEvents'
 
 const Home = ({currentMovie, setCurrentMovie}) => {
     return <section>
