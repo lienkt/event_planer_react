@@ -1,9 +1,9 @@
 import Details from '../Components/Events/EventsDetails' // need to change the path after
 
-const details = () => {
+const details = ({currentMovie, setCurrentMovie}) => {
     return <section>
             <div className="list-movie">
-                <Details />
+                <Details currentMovie={currentMovie} setCurrentMovie={setCurrentMovie}/>
             </div>
     </section>
 }

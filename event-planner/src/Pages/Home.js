@@ -1,9 +1,9 @@
 import Events from '../Components/Events/ListOfEvents'
 
-const Home = () => {
+const Home = ({currentMovie, setCurrentMovie}) => {
     return <section>
             <div className="list-movie">
-                <Events />
+                <Events currentMovie={currentMovie} setCurrentMovie={setCurrentMovie}/>
             </div>
     </section>
 }

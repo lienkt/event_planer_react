@@ -2,9 +2,10 @@
 // import { deleteRatingByMovieId } from './Ratings'
 
 export const getMovies = async () => {
-	let response = await fetch(`http://127.0.0.1:5000/`)
-    let movies = await response.json()
-    return movies
+	let response = await fetch(`http://localhost:3002/events/`)
+    let event = await response.json()
+    return event.events
+    console.log(event)
     
 }
 

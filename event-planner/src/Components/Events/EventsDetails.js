@@ -38,8 +38,6 @@ const EventsDetails = () => {
                 <p><strong>Popularity</strong> <span className={metaColor}>{movie.meta_score}</span></p>
                 <p><strong>Location:</strong> {movie.rating}</p>
                 <p><strong>Rating:</strong> {movie.rating}</p>
-                <div className = "yolo">
-                <Button color="link"><Link to="/details"><p><strong>Let's Go</strong></p></Link></Button></div>
                 </div>
                 );
             })}
