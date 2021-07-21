@@ -1,25 +1,19 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import '../../App';
 import { Button} from 'reactstrap';
-import { getMovies } from '../../Services/Events'
-import { useHistory } from 'react-router-dom'
+import { getMovieById } from '../../Services/eventDetails'
+import { Link } from 'react-router-dom'
 
-const ListOfEvents = () => {
+const EventsDetails = () => {
     const [movies, setMovies] = useState([])
-    let history = useHistory();
-    
     
     useEffect(() => {
         (async () => {
-            let fetchedMovies = await getMovies()
+            let fetchedMovies = await getMovieById()
             setMovies(fetchedMovies)
         })()
         
     }, [])
-
-    const handleClick = (e) => {
-        history.push("/Pages/details");
-    }
     
     return (
         <Fragment>
@@ -45,7 +39,7 @@ const ListOfEvents = () => {
                 <p><strong>Location:</strong> {movie.rating}</p>
                 <p><strong>Rating:</strong> {movie.rating}</p>
                 <div className = "yolo">
-                <Button onClick={handleClick}><p><strong>Let's Go</strong></p></Button></div>
+                <Button color="link"><Link to="/details"><p><strong>Let's Go</strong></p></Link></Button></div>
                 </div>
                 );
             })}
@@ -53,4 +47,4 @@ const ListOfEvents = () => {
             </Fragment>
             );
         };
-        export default ListOfEvents;
+        export default EventsDetails;
