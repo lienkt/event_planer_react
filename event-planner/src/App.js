@@ -1,12 +1,23 @@
-import logo from './logo.svg';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 import './App.css';
+import Users from './pages/Users'
+import Profile from './pages/Profile'
+import EditUser from './pages/EditUser'
 
 function App() {
   return (
-    <div className="App" class="p-6 items-center justify-center">
-        <h1 class="text-blue-400 font-extrabold">Hello Adnan Ali Khan from the Whole world!</h1>
-        <p class="tracking-widest">This is my first React App.</p>
+    <BrowserRouter forceRefresh={true}>
+    <div>
+      <Link className='link' to="/profile">Profile</Link>
+      <Link className='link' to="/users">Users</Link>
     </div>
+
+    <Switch>
+      <Route path="/profile" exact={true} component={Profile} />
+      <Route path="/users" exact={true} component={Users} />
+      <Route path='/users/:userId/edit' exact={true} component={EditUser} />
+    </Switch>
+    </BrowserRouter>
   );
 }
 
