@@ -14,6 +14,11 @@ input {
     padding-right: 5px;
 }
 
+.searchBtn button {
+    width: 30px;
+    height: 30px;
+}
+
 .searchIcon {
     width: 12px;
     height: 12px;
