@@ -11,12 +11,12 @@ class SignUp extends Component {
         this.state = {
             fullName:'',
             username:'',
-            email:'',
+            //skills:[],
             password:''
         }
         this.changeFullName = this.changeFullName.bind(this)
         this.changeUsername = this.changeUsername.bind(this)
-        this.changeEmail = this.changeEmail.bind(this)
+        //this.changeSkills = this.changeSkills.bind(this)
         this.changePassword = this.changePassword.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
     }
@@ -32,13 +32,13 @@ class SignUp extends Component {
             username:event.target.value
         })
     }
-
-    changeEmail(event){
+/*
+    changeSkills(event){
         this.setState({
-            email:event.target.value
+            skills:event.target.value
         })
     }
-
+*/
     changePassword(event){
         this.setState({
             password:event.target.value
@@ -51,21 +51,23 @@ class SignUp extends Component {
         const registered = {
             fullName: this.state.fullName,
             username:this.state.username,
-            email:this.state.email,
+            //skills:this.state.skills,
             password:this.state.password
         }
 
-        axios.post('http://localhost:4000/app/signup', registered)
+        axios.post('http://localhost:3002/users/', registered)
             .then(response => console.log(response.data))
+            .then(window.location='./pages/LoginPage/Login')
 
-
+        /*
         //window.location = '/'
         this.setState({
             fullName:'',
             username:'',
-            email:'',
+            //skills:'',
             password:''
         })
+        */
     }
 
 
@@ -73,6 +75,7 @@ class SignUp extends Component {
         return (
             <div>
                 <div className='container'>
+                    <div>Register Page</div>
                     <div className='form-div'>
                         <form onSubmit={this.onSubmit}>
                             <input type='text'
@@ -89,12 +92,7 @@ class SignUp extends Component {
                             className='form-control form-group'
                             />
 
-                            <input type='text'
-                            placeholder='E-mail'
-                            onChange={this.changeEmail}
-                            value={this.state.email}
-                            className='form-control form-group'
-                            />
+                            
 
                             <input type='password'
                             placeholder='password'
@@ -115,3 +113,7 @@ class SignUp extends Component {
 
 
 export default SignUp;
+
+
+
+

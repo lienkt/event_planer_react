@@ -1,12 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState}  from 'react';
+import Login from "./pages/LoginPage/Login";
 import SignUp from './pages/SignUp';
 
-ReactDOM.render(
-    <React.StrictMode>
-        
-        <SignUp/>
-    
-    </React.StrictMode>,
-    document.getElementById('root')
-);
+export const PAGES = {
+    Login,
+    SignUp
+};
+
+export function App() {
+    const [activePageKey, setActivePageKey] = useState("Login");
+    const ActivePage = PAGES[activePageKey];
+    return <ActivePage setActivePageKey={setActivePageKey}/>;
+}

@@ -1,0 +1,16 @@
+.bg {
+    width: 100%;
+    height: 200px;
+}
+
+.title {
+    color: #f57c00
+}
+
+.error {
+    color: #e53935
+}
+
+.deactive {
+    display: none;
+}
