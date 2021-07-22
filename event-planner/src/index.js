@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SignUp from "./pages/SignUp"
+import SignUp from "./pages/SignUpPage/SignUp"
 
 
 
