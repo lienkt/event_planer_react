@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link, useHistory } from 'react-router-dom'
-import { getUserById, editUsers } from '../../services/Users'
+import { getUserById, editUser } from '../../services/Users'
 
 import styles from './FormAddUser.module.css'
 
@@ -26,7 +26,7 @@ const FormEditUsers = () => {
 
     const onSubmitHandler = async (e) => {
         e.preventDefault();
-        await editUsers(user)
+        await editUser(user)
         history.push("/users")
     }
 

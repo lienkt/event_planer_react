@@ -69,3 +69,8 @@ button span {
 .MuiRating-root {
   font-size: 30px!important;
 }
+
+.MuiInputBase-input {
+  font-size: 22px!important;
+  color: rgb(107, 114, 128)!important;
+}

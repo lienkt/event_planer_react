@@ -3,7 +3,8 @@ import { getUserById, getHistory, getHosted } from '../../services/Users'
 import styles from './Profile.module.css'
 import Rating from '@material-ui/lab/Rating';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
+import { useCookies } from 'react-cookie';
 
 const Profile = () => {
     let { userId } = useParams()
@@ -13,22 +14,30 @@ const Profile = () => {
     const [showHis, setShowHis] = useState(false)
     const [hosteds, setHosteds] = useState([])
     const [showHosted, setShowHosted] = useState(false)
+    const [cookies] = useCookies(['user'])
 
     useEffect(() => {
         (async () => {
-            let fetchedUser = await getUserById(userId)
+            let fetchedUser = await getUserById(cookies.UserId)
+            console.log(fetchedUser)
             setUser(fetchedUser)
             setShowSkills(true)
         })()
     }, [])
 	
-    const onClickSkillsHandler = (userId) => {
+    const onClickSkillsHandler = () => {
         setShowSkills(true)
         setShowHis(false)
         setShowHosted(false)
     }
     
-    const onClickHisHandler = (userId) => {
+    const onClickAddMoreSkillHandler = () => {
+        setShowSkills(true)
+        setShowHis(false)
+        setShowHosted(false)
+    }
+    
+    const onClickHisHandler = () => {
         (async () => {
             let fetchedHis = await getHistory()
             setHistorys(fetchedHis)
@@ -38,7 +47,7 @@ const Profile = () => {
         })()
     }
 
-    const onClickHostedHandler = (userId) => {
+    const onClickHostedHandler = () => {
         (async () => {
             let fetchedHosted = await getHosted()
             setHosteds(fetchedHosted)
@@ -60,7 +69,7 @@ const Profile = () => {
                     <div className={[styles.leftPart, "flex justify-center items-center relative h-32 w-50 sm:mb-0 mb-3"].join(" ")}>
                         <div className={styles.avata}>
                             {user.profilePicture && 
-                                <img src={user.profilePicture} className={styles.avata} alt="user_pic" />   
+                                <img src={process.env.REACT_APP_API_URL + "uploads/" + user.profilePicture} className={styles.avata} alt="user_pic" />   
                             }
                             {user.profilePicture === undefined && 
                                 <img src="/user.png" className={styles.avata} alt="user_pic" />
@@ -68,7 +77,7 @@ const Profile = () => {
                         </div>
                     </div>
                     <div className={styles.righttPart} class="flex-auto sm:ml-5 justify-evenly">
-                        <div className={styles.fullname}>{user.fullname}</div>
+                        <div className={styles.fullname}>{user.fullName}</div>
                         <div className={styles.title}>{user.jobTitle}</div>
                         <div className={styles.usernameRow} class="flex">
                             <div className={styles.usernameLabel}>Username:</div>
@@ -83,7 +92,7 @@ const Profile = () => {
                             <div className={styles.rating}>
                                 <Rating
                                     name="total-rating"
-                                    value={3}
+                                    value={user.totalRating}
                                     precision={0.5}
                                     readOnly={true}
                                     emptyIcon={<StarBorderIcon fontSize="inherit" />}
@@ -116,31 +125,28 @@ const Profile = () => {
                     </div>
                 </div>
                 {showSkills && <div className={[styles.content, ""].join(" ")}>
-                    <div className={[styles.contentItem, "flex justify-between"].join(" ")}>
-                        <div className={styles.skillName}>DJ </div>
-                        <div class="flex justify-end">
-                            <div className={styles.ratingValue}>
-                                <Rating
-                                    name="rating-skill-1"
-                                    value={4}
-                                    precision={0.5}
-                                    emptyIcon={<StarBorderIcon fontSize="inherit" />}
-                                    />
+                    {user.skills !== undefined && user.skills.map((skill) => {
+                        return (
+                        <div className={[styles.contentItem, "flex justify-between"].join(" ")}>
+                            <div className={styles.skillName}>{skill.name}</div>
+                            <div class="flex justify-end">
+                                <div className={styles.ratingValue}>
+                                    <Rating
+                                        name="rating-skill-1"
+                                        value={skill.rating}
+                                        precision={0.5}
+                                        emptyIcon={<StarBorderIcon fontSize="inherit" />}
+                                        />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className={[styles.contentItem, "flex justify-between"].join(" ")}>
-                        <div className={styles.skillName}>DJ </div>
-                        <div class="flex justify-end">
-                            <div className={styles.ratingValue}>
-                                <Rating
-                                    name="rating-skill-2"
-                                    value={2}
-                                    precision={0.5}
-                                    emptyIcon={<StarBorderIcon fontSize="inherit" />}
-                                    />
-                            </div>
-                        </div>
+                        )
+                    })}
+                    <div className={[styles.contentItem, "flex justify-end"].join(" ")}>
+                        <Link to="/profile/skills"
+                            class="bg-blue-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded">
+                                Add more
+                        </Link>
                     </div>
                 </div>
                 }

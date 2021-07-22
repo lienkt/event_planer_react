@@ -93,10 +93,10 @@ export const addUsers = async (input) => {
     return users
 }
 
-export const editUsers = async (user) => {
+export const editUser = async (user) => {
     let response = await fetch(`${process.env.REACT_APP_API_URL}/users/${user._id}`,
 	{
-		method: 'PUT',
+		method: 'PATCH',
 		headers: {
 			'Accept': 'application/json',
 			'Content-Type': 'application/json'
