@@ -4,18 +4,6 @@ export const getUsers = async () => {
     return users
 }
 
-export const getUserById = async (userId) => {
-	let response = await fetch(`${process.env.REACT_APP_API_URL}/users/${userId}`, {
-		method: 'GET',
-		headers: {
-		  'Accept': 'application/json',
-		  'Content-Type': 'application/json'
-		}
-	})
-    let user = await response.json()
-    return user
-}
-
 export const getRoles = async () => {
 	let response = await fetch(`${process.env.REACT_APP_API_URL}/roles`)
     let roles = await response.json()
@@ -127,6 +115,18 @@ export const deleteUser = async (userId) => {
 			'Content-Type': 'application/json'
 		}
 	})
+}
+
+export const getUserById = async (userId) => {
+	let response = await fetch(`${process.env.REACT_APP_API_URL}/users/${userId}`, {
+		method: 'GET',
+		headers: {
+		  'Accept': 'application/json',
+		  'Content-Type': 'application/json'
+		}
+	})
+    let user = await response.json()
+    return user
 }
 
 export const getHistory = async () => {

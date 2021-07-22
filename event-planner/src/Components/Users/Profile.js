@@ -1,21 +1,23 @@
 import { useEffect, useState } from 'react'
-import { getUsers, getHistory, getHosted } from '../../services/Users'
+import { getUserById, getHistory, getHosted } from '../../services/Users'
 import styles from './Profile.module.css'
 import Rating from '@material-ui/lab/Rating';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
+import { useParams } from 'react-router-dom'
 
 const Profile = () => {
+    let { userId } = useParams()
     const [user, setUser] = useState([])
-    const [showSkills, setShowSkills] = useState(true)
+    const [showSkills, setShowSkills] = useState(false)
     const [historys, setHistorys] = useState([])
-    const [showHis, setShowHis] = useState(true)
+    const [showHis, setShowHis] = useState(false)
     const [hosteds, setHosteds] = useState([])
-    const [showHosted, setShowHosted] = useState(true)
+    const [showHosted, setShowHosted] = useState(false)
 
     useEffect(() => {
         (async () => {
-            let fetchedUsers = await getUsers()
-            setUser(fetchedUsers)
+            let fetchedUser = await getUserById(userId)
+            setUser(fetchedUser)
             setShowSkills(true)
         })()
     }, [])
@@ -31,7 +33,7 @@ const Profile = () => {
             let fetchedHis = await getHistory()
             setHistorys(fetchedHis)
             setShowHis(true)
-            setShowSkills(true)
+            setShowSkills(false)
             setShowHosted(false)
         })()
     }
@@ -45,25 +47,36 @@ const Profile = () => {
             setShowHis(false)
         })()
     }
+    
+    const DateTimeFormat = (timestamp) => {
+        var date = new Date(timestamp);
+        return date.getDate() + "-" + (date.getMonth()+1) + "-" + date.getFullYear()
+    }
+    
     return (
         <div className={[styles.profilePage, "flex justify-center"].join(" ")}>
             <div className={styles.profilePageInside}>
                 <div className={[styles.header, "flex justify-start"].join(" ")}>
                     <div className={[styles.leftPart, "flex justify-center items-center relative h-32 w-50 sm:mb-0 mb-3"].join(" ")}>
                         <div className={styles.avata}>
-                            <img src="/user.png" className={styles.avata} alt="bg" />
+                            {user.profilePicture && 
+                                <img src={user.profilePicture} className={styles.avata} alt="user_pic" />   
+                            }
+                            {user.profilePicture === undefined && 
+                                <img src="/user.png" className={styles.avata} alt="user_pic" />
+                            }
                         </div>
                     </div>
                     <div className={styles.righttPart} class="flex-auto sm:ml-5 justify-evenly">
-                        <div className={styles.fullname}>Alex</div>
-                        <div className={styles.title}>DJ</div>
+                        <div className={styles.fullname}>{user.fullname}</div>
+                        <div className={styles.title}>{user.jobTitle}</div>
                         <div className={styles.usernameRow} class="flex">
                             <div className={styles.usernameLabel}>Username:</div>
-                            <div className={styles.username}>lienkt</div>
+                            <div className={styles.username}>{user.username}</div>
                         </div>
                         <div className={styles.ageRow} class="flex">
-                            <div className={styles.ageLabel}>Age:</div>
-                            <div className={styles.age}>27</div>
+                            <div className={styles.ageLabel}>Date of birth:</div>
+                            <div className={styles.age}> {DateTimeFormat(user.dateOfBirth)}</div>
                         </div>
                         <div className={styles.ratingRow} class="flex">
                             <div className={styles.ratingLabel}>Rating:</div>

@@ -1,0 +1,24 @@
+.eventDetailPage {
+    margin: 40px;
+}
+
+.event {
+    border-radius: 5px;
+    background-color: white;
+    padding: 20px;
+}
+
+.eventPic img {
+    max-width: 200px;
+}
+
+.headerTop {
+    padding: 20px;
+    border-bottom: 2px solid #8c8c8c;
+}
+
+.eventName {
+    font-weight: 700;
+    color: rgb(31, 41, 55);
+    font-size: 28px;
+}
