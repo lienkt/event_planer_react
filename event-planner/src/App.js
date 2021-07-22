@@ -2,6 +2,7 @@ import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 import './App.css';
 import Homepage from "./pages/Home"
 import Event from "./pages/Event"
+import CreateEvent from './pages/CreateEvent';
 import Users from './pages/Users'
 import Profile from './pages/Profile'
 import EditUser from './pages/EditUser'
@@ -60,6 +61,7 @@ function App() {
       <Route path="/profile/skills" exact={true} component={Skills} />
       <Route path="/users" exact={true} component={Users} />
       <Route path='/users/:userId/edit' exact={true} component={EditUser} />
+      <Route path='/createEvent' exact={true} component={CreateEvent} />
     </Switch>
     </BrowserRouter>
   );
