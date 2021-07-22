@@ -1,13 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import SignUp from './pages/SignUp';
 
-function App() {
-  return (
-    <div className="App" class="p-6 items-center justify-center">
-        <h1 class="text-blue-400 font-extrabold">Hello Adnan Ali Khan from the Whole world!</h1>
-        <p class="tracking-widest">This is my first React App.</p>
-    </div>
-  );
-}
-
-export default App;
+ReactDOM.render(
+    <React.StrictMode>
+        
+        <SignUp/>
+    
+    </React.StrictMode>,
+    document.getElementById('root')
+);
