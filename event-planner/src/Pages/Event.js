@@ -1,9 +1,9 @@
-import Details from '../components/Events/EventsDetails' // need to change the path after
+import EventDetail from '../components/Events/EventDetail'
 
 const Event = ({currentMovie, setCurrentMovie}) => {
     return <section>
             <div className="list-movie">
-                <Details currentMovie={currentMovie} setCurrentMovie={setCurrentMovie}/>
+                <EventDetail />
             </div>
     </section>
 }

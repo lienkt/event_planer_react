@@ -37,6 +37,10 @@
     margin-top: 30px;
 }
 
+.usernameLabel, .ageLabel, .ratingLabel {
+    font-weight: 700;
+}
+
 .skillLabel, .historyLabel {
     margin-right: 20px;
 }
