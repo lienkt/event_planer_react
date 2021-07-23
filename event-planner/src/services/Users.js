@@ -4,6 +4,12 @@ export const getUsers = async () => {
     return users
 }
 
+export const getUser = async (userId) => {
+	let response = await fetch(`${process.env.REACT_APP_API_URL}/users/${userId}`)
+    let user = await response.json()
+    return user
+}
+
 export const getRoles = async () => {
 	let response = await fetch(`${process.env.REACT_APP_API_URL}/roles`)
     let roles = await response.json()

@@ -21,3 +21,15 @@ export const getEventById = async (eventId) => {
     let result = await response.json()
     return result
 }
+
+export const getEventByUserId = async (userId) => {
+	let response = await fetch(`${process.env.REACT_APP_API_URL}/events/byHostId/${userId}`, {
+		method: 'GET',
+		headers: {
+		  'Accept': 'application/json',
+		  'Content-Type': 'application/json'
+		}
+	})
+    let result = await response.json()
+    return result
+}

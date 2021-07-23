@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getEvents } from '../../services/Events'
 import { useHistory, Link } from 'react-router-dom'
 import styles from './EventList.module.css'
+import {getUser} from '../../services/Users'
 
 const EventList = () => {
     const [events, setevents] = useState([])
@@ -37,7 +38,7 @@ const EventList = () => {
         } else {
             metaColor = 'low';
         }
-        return metaColor
+
     }
 
     return (
@@ -55,11 +56,10 @@ const EventList = () => {
                             }
                         </div>
                         <p><strong>Event Date:</strong> {DateTimeFormat(event.dateOfEvent)}</p>
-                        <p><strong>Popularity</strong> <span className={metaColor(event.hostId)}>{event.meta_score}</span></p>
                         <p><strong>Location:</strong> {event.location}</p>
 
                         <div className={[styles.readMore, "flex justify-end"].join(" ")}>
-                            <Link to={`/60f8201f1a5a2a3fc87426bf/detail`} 
+                            <Link to={`/${event._id}/detail`} 
                                 class="bg-red-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded">
                                  Read more
                             </Link>
