@@ -12,6 +12,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 
 const Ratings = () => {
+    let { userId } = useParams()
     const [user, setUser] = useState([])
     const [skills, setSkill] = useState([])
     const [skillIndex, setSkillIndex] = useState(null)
@@ -21,10 +22,18 @@ const Ratings = () => {
 
     useEffect(() => {
         (async () => {
-            let fetchedData = await getUserById(cookies.UserId)
-            console.log(fetchedData)
-            setUser(fetchedData)
-            setSkill(fetchedData.skills ? fetchedData.skills : [])
+            
+            if (userId !== undefined && userId !== null){
+                let fetchedData = await getUserById(userId)
+                console.log(fetchedData)
+                setUser(fetchedData)
+                setSkill(fetchedData.skills ? fetchedData.skills : [])
+            } else {
+                let fetchedData = await getUserById(cookies.UserId)
+                console.log(fetchedData)
+                setUser(fetchedData)
+                setSkill(fetchedData.skills ? fetchedData.skills : [])
+            }
         })()
     }, [])
     
@@ -57,7 +66,7 @@ const Ratings = () => {
         userTmp.skills = skillsTmp
         userTmp.rating = parseFloat(ratingTotal/ratingAmount)
         await editUser(userTmp)
-        history.push("/profile/rating")
+        history.push(`/${userId}/profile/rating`)
     }
 
     return (
