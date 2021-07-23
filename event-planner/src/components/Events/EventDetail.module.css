@@ -1,11 +1,9 @@
 .eventDetailPage {
-    margin: 40px;
+    padding: 20px;
 }
 
-.event {
-    border-radius: 5px;
-    background-color: white;
-    padding: 20px;
+.detailPageInside {
+    margin: 40px;
 }
 
 .eventPic img {
@@ -21,4 +19,36 @@
     font-weight: 700;
     color: rgb(31, 41, 55);
     font-size: 28px;
+}
+
+.header {
+    border-radius: 5px;
+    padding: 20px;
+    background-color: white;
+}
+
+.headerTop {
+    padding: 20px;
+    border-bottom: 2px solid #8c8c8c;
+}
+
+.leftPart {
+    width: 200px;
+    height: 200px;
+}
+
+.requirements {
+    margin-top: 20px;
+}
+
+.content {
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.contentItem {
+    padding: 20px;
+    width: 100%;
+    border-bottom: 0.5px solid #0e2a4759;
 }

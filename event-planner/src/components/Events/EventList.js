@@ -43,10 +43,10 @@ const EventList = () => {
     return (
         <>
         <div className={[styles.readMore, "flex justify-end"].join(" ")}>
-                            <Link to="/createEvent"
-                                class="bg-red-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded">
-                                 Create Event
-                            </Link>
+            <Link to="/createEvent"
+                class="bg-red-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded">
+                    Create Event
+            </Link>
         </div>
         <section className={[styles.eventsPage, "grid grid-cols-3 gap-4"].join(" ")}>
             
@@ -56,7 +56,7 @@ const EventList = () => {
                         <div className={styles.eventName}>{event.name}</div>
                          <div className={styles.eventPic}>
                             {event.picture && 
-                                <img src={event.picture} alt="event_pic" />   
+                                <img src={process.env.REACT_APP_API_URL + "/uploads/" + event.picture} alt="event_pic" />   
                             }
                             {event.picture === undefined && 
                                 <img src="/picture.png" alt="event_pic" />    

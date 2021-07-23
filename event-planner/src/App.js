@@ -8,6 +8,7 @@ import Profile from './pages/Profile'
 import EditUser from './pages/EditUser'
 import SearchBar from './components/Search/SearchBar'
 import Skills from './pages/Skills'
+import Requirements from './pages/Requirements'
 import Rating from './pages/Rating'
 import { useCookies } from 'react-cookie'
 import { useState, useEffect } from "react"
@@ -57,8 +58,9 @@ function App() {
     <Switch>
       <Route path="/" exact={true} component={Homepage} />
       <Route path='/:eventId/detail' exact={true} component={Event} />
-      <Route path="/:eventId/skills" exact={true} component={Skills} />
+      <Route path="/:eventId/requirements" exact={true} component={Requirements} />
       <Route path="/profile" exact={true} component={Profile} />
+      <Route path="/:userId/profile" exact={true} component={Profile} />
       <Route path="/profile/skills" exact={true} component={Skills} />
       <Route path="/profile/rating" exact={true} component={Rating} />
       <Route path="/users" exact={true} component={Users} />

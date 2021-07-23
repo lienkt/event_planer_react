@@ -18,10 +18,15 @@ const Profile = () => {
 
     useEffect(() => {
         (async () => {
-            let fetchedUser = await getUserById(cookies.UserId)
-            console.log(fetchedUser)
-            setUser(fetchedUser)
-            setShowSkills(true)
+            if (userId !== undefined && userId !== null){
+                let fetchedUser = await getUserById(userId)
+                setUser(fetchedUser)
+                setShowSkills(true)
+            } else {
+                let fetchedUser = await getUserById(cookies.UserId)
+                setUser(fetchedUser)
+                setShowSkills(true)
+            }
         })()
     }, [])
 	
