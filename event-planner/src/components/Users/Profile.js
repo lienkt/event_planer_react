@@ -69,9 +69,9 @@ const Profile = () => {
                     <div className={[styles.leftPart, "flex justify-center items-center relative h-32 w-50 sm:mb-0 mb-3"].join(" ")}>
                         <div className={styles.avata}>
                             {user.profilePicture && 
-                                <img src={process.env.REACT_APP_API_URL + "uploads/" + user.profilePicture} className={styles.avata} alt="user_pic" />   
+                                <img src={process.env.REACT_APP_API_URL + "/uploads/" + user.profilePicture} className={styles.avata} alt="user_pic" />   
                             }
-                            {user.profilePicture === undefined && 
+                            {(user.profilePicture === undefined || user.profilePicture === null) && 
                                 <img src="/user.png" className={styles.avata} alt="user_pic" />
                             }
                         </div>
@@ -92,7 +92,7 @@ const Profile = () => {
                             <div className={styles.rating}>
                                 <Rating
                                     name="total-rating"
-                                    value={user.totalRating}
+                                    value={parseFloat(user.rating)}
                                     precision={0.5}
                                     readOnly={true}
                                     emptyIcon={<StarBorderIcon fontSize="inherit" />}
@@ -133,7 +133,7 @@ const Profile = () => {
                                 <div className={styles.ratingValue}>
                                     <Rating
                                         name="rating-skill-1"
-                                        value={skill.rating}
+                                        value={parseFloat(skill.rating)}
                                         precision={0.5}
                                         emptyIcon={<StarBorderIcon fontSize="inherit" />}
                                         />
@@ -143,6 +143,10 @@ const Profile = () => {
                         )
                     })}
                     <div className={[styles.contentItem, "flex justify-end"].join(" ")}>
+                        <Link to="/profile/rating"
+                            class="bg-blue-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded">
+                                Rating
+                        </Link>&nbsp;&nbsp;
                         <Link to="/profile/skills"
                             class="bg-blue-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded">
                                 Add more
