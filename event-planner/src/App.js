@@ -63,6 +63,7 @@ function App() {
       <Route path="/:userId/profile" exact={true} component={Profile} />
       <Route path="/profile/skills" exact={true} component={Skills} />
       <Route path="/profile/rating" exact={true} component={Rating} />
+      <Route path="/:userId/profile/rating" exact={true} component={Rating} />
       <Route path="/users" exact={true} component={Users} />
       <Route path='/users/:userId/edit' exact={true} component={EditUser} />
       <Route path='/createEvent' exact={true} component={CreateEvent} />

@@ -148,10 +148,12 @@ const Profile = () => {
                         )
                     })}
                     <div className={[styles.contentItem, "flex justify-end"].join(" ")}>
-                        <Link to="/profile/rating"
-                            class="bg-blue-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded">
-                                Rating
-                        </Link>&nbsp;&nbsp;
+                        { userId !== undefined && userId !== null &&
+                            <Link to={`/${userId}/profile/rating`}
+                                class="bg-blue-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded">
+                                    Rating
+                            </Link>
+                        }&nbsp;&nbsp;
                         <Link to="/profile/skills"
                             class="bg-blue-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded">
                                 Add more
