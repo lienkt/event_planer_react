@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import { getUserById, editUser } from '../../services/Users'
 import { getEventById, editEvent } from '../../services/Events'
-import styles from './SkillList.module.css'
+import styles from './RequirementList.module.css'
 import Rating from '@material-ui/lab/Rating';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { useParams, useHistory } from 'react-router-dom'
 import { useCookies } from 'react-cookie';
 import TextField from '@material-ui/core/TextField';
 
-const SkillList = () => {
+const RequirementList = () => {
     let { eventId } = useParams()
     const [user, setUser] = useState([])
     const [event, setEvent] = useState([])
@@ -19,16 +19,9 @@ const SkillList = () => {
 
     useEffect(() => {
         (async () => {
-            if (eventId !== undefined && eventId !== "profile") {
-                let fetchedData = await getEventById(eventId)
-                setEvent(fetchedData)
-                setSkill(fetchedData.skills)
-            } else {
-                let fetchedData = await getUserById(cookies.UserId)
-                console.log(fetchedData)
-                setUser(fetchedData)
-                setSkill(fetchedData.skills ? fetchedData.skills : [])
-            }
+            let fetchedData = await getEventById(eventId)
+            setEvent(fetchedData)
+            setSkill(fetchedData.skills)
         })()
     }, [])
     
@@ -39,39 +32,24 @@ const SkillList = () => {
 
     const onSubmitHandler = async (e) => {
         e.preventDefault();
-        if (eventId !== undefined && eventId !== "profile") {
-            const skillsTmp = skills
-            skillsTmp.push({
-                'name': skillAdd,
-                'ratingAmount': 0,
-                'rating': 0
-            })
-            
-            const eventTmp = event
-            eventTmp.skills = skillsTmp
-            console.log(eventTmp)
-            await editEvent(eventTmp)
-            history.push("/profile/skills")
-        } else {
-            const skillsTmp = skills
-            skillsTmp.push({
-                'name': skillAdd,
-                'ratingAmount': 0,
-                'rating': 0
-            })
-            
-            const userTmp = user
-            userTmp.skills = skillsTmp
-            await editUser(userTmp)
-            history.push("/profile/skills")
-        }
+        const skillsTmp = skills
+        skillsTmp.push({
+            'name': skillAdd,
+            'ratingAmount': 0,
+            'rating': 0
+        })
+        
+        const eventTmp = event
+        eventTmp.skills = skillsTmp
+        console.log(eventTmp)
+        await editEvent(eventTmp)
+        history.push("/profile/skills")
     }
 
     return (
         <div className={[styles.skillPage, "flex justify-center"].join(" ")}>
             <div className={styles.skillPageInside}>
-                {(eventId !== undefined && eventId !== "profile") && <div className={styles.fullname}>{event.name}</div>}
-                {!(eventId !== undefined && eventId !== "profile") && <div className={styles.fullname}>{user.fullName}</div>}
+                <div className={styles.fullname}>{event.name}</div>
                 <div>
                     <form onSubmit={onSubmitHandler}>
                         <div className={styles.form}>
@@ -114,4 +92,4 @@ const SkillList = () => {
         </div>
     )
 }
-export default SkillList;
+export default RequirementList;
