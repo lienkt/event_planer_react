@@ -41,7 +41,15 @@ const EventList = () => {
     }
 
     return (
+        <>
+        <div className={[styles.readMore, "flex justify-end"].join(" ")}>
+                            <Link to="/createEvent"
+                                class="bg-red-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded">
+                                 Create Event
+                            </Link>
+        </div>
         <section className={[styles.eventsPage, "grid grid-cols-3 gap-4"].join(" ")}>
+            
             {events !== undefined && events.map((event) => {
                 return (
                     <div className={[styles.event, ""].join(" ")}>
@@ -59,7 +67,7 @@ const EventList = () => {
                         <p><strong>Location:</strong> {event.location}</p>
 
                         <div className={[styles.readMore, "flex justify-end"].join(" ")}>
-                            <Link to={`/60f8201f1a5a2a3fc87426bf/detail`} 
+                            <Link to={`/${event._id}/detail`} 
                                 class="bg-red-500 px-4 py-2 font-semibold text-white inline-flex items-center space-x-2 rounded">
                                  Read more
                             </Link>
@@ -68,6 +76,7 @@ const EventList = () => {
                 )
             })}
         </section>
+        </>
     )
 }
 export default EventList;
