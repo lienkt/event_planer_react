@@ -44,7 +44,11 @@ const Profile = () => {
     const onSubmitHandler = async (e) => {
         e.preventDefault();
         const skillsTmp = skills
-        skillsTmp.push({'name': skillAdd, 'rating': null})
+        skillsTmp.push({
+            'name': skillAdd,
+            'ratingAmount': 0,
+            'rating': 0
+        })
         
         if (eventMode) {
             const eventTmp = event
