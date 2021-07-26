@@ -1,0 +1,26 @@
+
+.searchBar {
+    border: 1px solid rgb(107, 114, 128);
+    margin-right: 10px;
+    height: 40px;
+}
+
+input {
+    height: 30px;
+    font-size: 22px;
+}
+
+.searchBtn {
+    padding-right: 5px;
+}
+
+.searchBtn button {
+    width: 30px;
+    height: 30px;
+}
+
+.searchIcon {
+    width: 12px;
+    height: 12px;
+  }
+  
