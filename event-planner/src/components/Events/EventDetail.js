@@ -4,16 +4,20 @@ import { useHistory, useParams, Link } from 'react-router-dom'
 import styles from './EventDetail.module.css'
 import Rating from '@material-ui/lab/Rating';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
+import { getUserById } from '../../services/Users'
 
 const EventDetail = () => {
     let { eventId } = useParams()
     const [event, setevents] = useState([])
     let history = useHistory();
+    const [host, setHost] = useState({})
+    const [materials, setmaterials] = useState([])
     
     useEffect(() => {
         (async () => {
             let fetchedevent = await getEventById(eventId)
             setevents(fetchedevent)
+            setHost(await getUserById(fetchedevent.hostId))
         })()
         
     }, [])
@@ -54,9 +58,24 @@ const EventDetail = () => {
                     </div>
                     <div className={styles.righttPart} class="flex-auto sm:ml-5 justify-evenly">
                         <div className={styles.eventName}>{event.name}</div>
+                        <p><strong>Host Name:</strong> {host.fullName}</p>
                         <p><strong>Event Date:</strong> {DateTimeFormat(event.dateOfEvent)}</p>
                         <p><strong>Popularity</strong> <span className={metaColor(event.hostId)}>{event.meta_score}</span></p>
                         <p><strong>Location:</strong> {event.location}</p>
+                        <p><strong>Total Number of Guests:</strong> {event.guests !== undefined && event.guests.length}</p>
+                        <select>
+                            <option value= "0"> -- Select the food --</option>
+                            {event.materials && event.materials.map((event)=>(
+                                <option key={event} value={event}></option>
+                            ))}
+                        </select>
+                        <ul>
+                            {materials.map(items => (
+                                <li key={materials.id}>
+                                {materials.item} {materials.count}
+                                </li>
+                            ))}
+                        </ul>
                         <div className={[styles.requirements, "flex justify-start"].join(" ")}>
                             <button 
                                 onClick={onClickHisHandler}
